@@ -62,8 +62,17 @@ Per servire il frontend in produzione, punta un server statico (o lo stesso Expr
 ### Variabili d'ambiente opzionali
 
 - `PORT` — porta del backend (default `4000`).
-- `GOOGLE_BOOKS_API_KEY` — se in produzione incontri limiti di quota sull'API pubblica di Google
-  Books, imposta questa variabile con una tua API key.
+- `GOOGLE_BOOKS_API_KEY` — se la ricerca libri mostra "Ricerca libri non disponibile al momento",
+  è quasi sempre perché la quota *anonima* e condivisa dell'API pubblica di Google Books si è
+  esaurita. Una tua chiave gratuita ha una quota separata e molto più ampia:
+  1. Vai su [console.cloud.google.com](https://console.cloud.google.com/), crea un progetto.
+  2. Abilita la [Books API](https://console.cloud.google.com/apis/library/books.googleapis.com).
+  3. In [Credenziali](https://console.cloud.google.com/apis/credentials) crea una "Chiave API".
+  4. Copia `server/.env.example` in `server/.env` e incolla la chiave:
+     ```
+     GOOGLE_BOOKS_API_KEY=la-tua-chiave
+     ```
+  5. Riavvia `npm run dev`.
 
 ## Struttura del progetto
 
