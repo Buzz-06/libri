@@ -32,4 +32,12 @@ app.use((err, _req, res, _next) => {
 
 app.listen(PORT, () => {
   console.log(`Libri API in ascolto su http://localhost:${PORT}`);
+  if (process.env.GOOGLE_BOOKS_API_KEY) {
+    console.log("Google Books: chiave personale rilevata (server/.env) ✓");
+  } else {
+    console.log(
+      "Google Books: nessuna chiave in server/.env — uso la quota pubblica condivisa " +
+        "(può esaurirsi facilmente e dare errore 429). Vedi il README per aggiungere una chiave."
+    );
+  }
 });
